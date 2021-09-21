@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		a{
+			text-decoration: none;
+			color: yellow;
+			padding-left: 1rem;
+		}
+		ul{
+			background-color: blue;
+			list-style: none;
+			margin: 0px;
+			padding-left: 0px;
+		}
+		li{
+			background-color: blue;
+			color: yellow;
+			display: block;
+			float: left;
+			position: relative;
+			text-decoration: none;
+			color: yellow;
+			width: 120px;
+			height: 40px;
+			line-height: 40px;
+		}
+		li:hover{
+			background-color: lightblue;
+		}
+		ul li ul{
+			position: absolute;
+			display: none;
+		}
+		ul li:hover > ul{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+<ul>
+	<li><a href="">Trang chu</a></li>
+	<li>
+		<a href="">Du lich</a>
+		<ul>
+			<li><a href="">Trong nuoc</a></li>
+			<li><a href="">Ngoai nuoc</a></li>
+			<li><a href="">Nuoc khac</a></li>
+		</ul>
+	</li>
+	<li><a href="">Tin tuc</a></li>
+	<li><a href="">Khuyen mai</a></li>
+	<li><a href="">lien he</a></li>
+</ul>
+</body>
+</html>
