@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .menu{
+            background-color: #1111;
+            width: 210px;
+        }
+        .item input{
+            width: 150px;
+        }
+        .menu .item:first-child{
+            font-size: 20px;
+            border-bottom: 1px solid white;
+        }
+        .item{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        }
+        .item .sub{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+        }
+        .item .sub .sub-container{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 23px;
+        }
+        .menu a{
+            color:blue;
+            text-decoration: none;
+            padding: 10px 10px;
+        }
+        /* .item:hover{
+            background-color: white;
+        } */
+        .item:hover .sub{
+            display: block;
+        }
+        .sub:hover .sub-container{
+            display: block;
+        }
+        .sub{
+            display: none;
+        }
+        .sub-container{
+            display: none;
+        }
+        .sub-container a{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="item">
+            <a href="">Trang chu</a>
+        </div>
+        <div class="item">
+            <form>
+                <input type="text" placeholder="Search...">
+            </form>
+        </div>
+        <div class="item">
+            <a href="">Quan ly</a>
+            <div class="sub">
+                <a href="">San pham</a>
+                <div class="sub-container">
+                    <a href="">Danh muc san pham</a>
+                    <a href="">San pham</a>
+                    <a href="">Phieu dat hang</a>
+                    <a href="">Hoa don</a>
+                </div>
+            </div>
+        </div>
+        <div class="item"><a href="">Tai khoan</a></div>
+    </div>
+
+
+</body>
+</html>
