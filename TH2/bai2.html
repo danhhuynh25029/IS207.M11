@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="myform">
+    <table>
+        <tr>
+            <td><h1>Thuc don</h1></td>
+        </tr>
+        <tr>
+            <th>Thuc an</th>
+            <th>Nuoc uong</th>
+            <th>Thoi diem</th>
+        </tr>
+        <tr>
+            <td>
+                
+                <select name="doan" id="doan" multiple size="7">
+                    <option>Bún bò</option>
+                    <option>Hủ tiếu</option>
+                    <option>Bánh canh</option>
+                    <option>Phở bò</option>
+                    <option>Nuôi</option>
+                    <option>Bánh mì thịt</option>
+                    <option>Bánh cuốn</option>
+                </select>
+            </td>
+            <td>
+                
+                <select name="nuoc" id="" multiple size="7">
+                <option value="caphe">Cà phê đá</option> 
+                <option value="caphesua">Cà phê sữa</option> 
+                <option value="chanhday">Chanh dây</option> 
+                <option>Chanh muối</option> 
+                <option>Xí muội</option> 
+                <option>Sữa tươi</option> 
+                <option>Cam vắt</option> 
+                </select>
+            </td>
+            <td>
+                <input type="radio" value="Ban ngay" name="banngay">
+                <label for="Ban ngay">Ban ngay</label><br>
+                <input type="radio" value="Ban dem" name="bandem">
+                <label for="Ban dem">Ban dem</label>
+        </td>
+        </tr>
+        <tr>
+            <td>
+            <input type="button" value="Tinh tien" onclick="render()">
+        </td>
+        </tr>
+    </table>
+</form>
+<div id="hoadon">
+</div>
+</body>
+<script>
+    function render(){
+        var tongtien = 0;
+        var s = "<table><tr><th>Cac mon da dung</th><th>Tien</th></tr>"
+        var m_doan = [20000,18000,17000,19000,15000,12000,15000]
+        var m_nuoc = [12000,15000,13000,12000,14000,13000,17000]
+        var ls_doan = document.forms["myform"]["doan"];
+        var ls_nuoc = document.forms["myform"]["nuoc"];
+        for(var i = 0 ; i < ls_doan.length ; i++){
+            if(ls_doan[i].selected == true){
+                s += `<tr><td>${ls_doan[i].value}</td><td>${m_doan[i]}</td></tr>`
+                // console.log(ls_doan[i].value)
+                tongtien += m_doan[i]
+            }
+        }
+        for (var i = 0 ; i < ls_nuoc.length ; i++){
+            if(ls_nuoc[i].selected == true){
+                s += `<tr><td>${ls_nuoc[i].value}</td><td>${m_nuoc[i]}</td>>/tr>`
+                tongtien += m_nuoc[i]        
+            }
+        }
+        s += `<tr><td>Tong tien</td><td>${tongtien}</td></tr></form>`
+        document.getElementById("hoadon").innerHTML = s;
+    }
+</script>
+</html>

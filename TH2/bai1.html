@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,tr,td,th{
+            border: 2px solid blue;
+        }
+        table tr td{
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+        input[type=number]{
+            width: 50px;
+            float: left;
+            border-radius: 5px 5px;
+            outline: none;
+        }
+        input[type=button]{
+            border-radius: 10px 10px;
+            width: 130px;
+            border: 3px solid lightblue;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <th>Luong</th>
+                <td><input type="text" id="luong" value="1000"></td>
+            </tr>
+            <tr>
+                <th>He so luong</th>
+                <td><input type="number" step="0.1" id="heso" value="1"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" value="Tinh luong thang" onclick="Tong()"></td>
+            </tr>
+            <tr>
+                <th>Luong thang</th>
+                <td id="tong"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+function Tong(){
+    var s = parseInt(document.getElementById("luong").value);
+    var h = parseFloat(document.getElementById("heso").value);
+    document.getElementById("tong").innerHTML = s*h;
+}
+</script>
+</html>
