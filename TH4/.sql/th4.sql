@@ -1,0 +1,32 @@
+-- use th4;
+-- create table CONGTY(
+-- 	MaCongTy varchar(40) not null,
+--     TenCongTy varchar(40),
+--     DiaChi varchar(40),
+--     primary key(MaCongTy)
+-- );
+-- create table CHINHANH(
+-- 	MaChiNhanh varchar(40) not null,
+--     TenChiNhanh varchar(40),
+--     DiaChi varchar(40),
+--     MaCongTy varchar(40),
+--     primary key(MaChiNhanh)
+-- );
+-- create table PHONGBAN(
+-- 	MaPhong varchar(40) not null,
+--     TenPhong varchar(40),
+--     MaChiNhanh varchar(40),
+--     primary key(MaPhong)
+-- );
+-- create table NHANVIEN(
+-- 	MaNhanVien varchar(40) not null,
+--     TenNhanVien varchar(40),
+--     LuongThang float,
+--     GioiTinh tinyint(4),
+--     MaPhong varchar(40),
+--     primary key(MaNhanVien)
+-- );
+-- tao khoa ngaoi
+alter table CHINHANH add foreign key(MaCongTy) references CONGTY(MaCongTy);
+alter table PHONGBAN add foreign key(MaChiNhanh) references CHINHANH(MaChiNhanh);
+alter table NHANVIEN add foreign key(MaPhong) references PHONGBAN(MaPhong);
