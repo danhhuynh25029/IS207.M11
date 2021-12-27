@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+	</title>
+</head>
+<body>
+<form>
+	<input type="text" id="soluong" name="soluong" onkeyup="show()">
+</form>
+<div id="table">
+	
+</div>
+</body>
+<script type="text/javascript">
+	function show(){
+		var ajax = new XMLHttpRequest();
+		var soluong = document.getElementById("soluong").value;
+		console.log(soluong);
+		ajax.onreadystatechange = function(){
+			if(this.status == 200 && this.readyState == 4){
+				document.getElementById("table").innerHTML = this.responseText;
+			}
+		}
+		ajax.open("GET",`select.php?soluong=${soluong}`,true);
+		ajax.send();
+	}
+</script>
+</html>
