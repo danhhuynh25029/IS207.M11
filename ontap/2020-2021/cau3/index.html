@@ -1,0 +1,48 @@
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form action="insert.php" method="GET">
+		<table>
+			<tr>
+				<td>Số xe</td>
+				<td><input type="text" name="soxe" id="soxe" placeholder="51H-XXX" onkeyup="show()"></td>
+			</tr>
+			<tr>
+				<td>Họ tên khách hàng</td>
+				<td><input type="text" name="ten" id="ten" placeholder="Trần Anh Hùng"></td>
+			</tr>
+			<tr>
+				<td>Mã bảo dưỡng</td>
+				<td><input type="text" name="mabd" placeholder="BD001"></td>
+			</tr>
+			<tr>
+				<td>Số KM</td>
+				<td><input type="text" name="sokm" placeholder="20000"></td>
+			</tr>
+			<tr>
+				<td>Nội dung</td>
+				<td><input type="text" name="noidung" placeholder="Bảo dưỡng 20000"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="them" value="Thêm"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+<script>
+	function show(){
+		var ajax = new XMLHttpRequest();
+		var soxe = document.getElementById("soxe").value;
+		ajax.onreadystatechange = function(){
+			if(this.status == 200 && this.readyState == 4){
+				console.log(this.responseText);
+				document.getElementById("ten").value = this.responseText;
+			}
+		}
+		ajax.open("GET",`find.php?soxe=${soxe}`,true);
+		ajax.send();
+	}
+</script>
+</html>	
