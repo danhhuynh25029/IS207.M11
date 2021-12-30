@@ -6,45 +6,46 @@
         <tr>
             <td>Số xe</td>
             <td><select onchange="show()" id="soxe">
-                    <option selected>Mời chọn</option>
-                    <?php 
-                        $SERVER = "localhost:3306";
-                        $USERNAME = "root";
-                        $PASSWORD = "admin12345";
-                        $DBNAME = "baoduong";
-                        $conn = mysqli_connect($SERVER,$USERNAME,$PASSWORD,$DBNAME);
-                        $sql = "select * from BAODUONG";
-                        $r = mysqli_query($conn,$sql);
-                        while($row = mysqli_fetch_row($r)){
-                            echo "<option value=$row[5]>$row[5]</option>";
-                        }
-                    ?>
                 </select>
             </td>
             <td></td>
             <td>
                 Ngày nhận xe
                     </td>
-                <td> <input type="text" id="ngaynhan" name="ngaynhan">
+                <td> 
+                    <input type="text" id="ngaynhan" name="ngaynhan" onkeyup="showsoxe()">
             </td>
         <tr>
         <tr>
             <td></td>
         <td></td>
         <td></td>
-        <td>Thành tiền </td>
-        <td><input type="text" name="thanhtien"></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr>
-        <td colspan=5><input type="submit" value="Thanh toán"></td>
+    <td colspan=5>
+    <div id="table">
+    
+    </div>
+    </td>
 </tr>
 </table>
 </form>
-<div id="table">
-    
-</div>
+
 </body>
 <script>
+    function showsoxe(){
+        var ajax = new XMLHttpRequest();
+        var ngaynhan = document.getElementById("ngaynhan").value;
+        ajax.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                document.getElementById("soxe").innerHTML = this.responseText;
+            }
+        }
+        ajax.open("GET",`soxe.php?ngaynhan=${ngaynhan}`,true);
+        ajax.send();
+    }
     function show(){
         var ajax = new XMLHttpRequest();
         var ngaynhan = document.getElementById("ngaynhan").value;
@@ -55,7 +56,20 @@
                 document.getElementById("table").innerHTML = this.responseText;
             }
         }
-        ajax.open("GET",`find.php?soxe=${soxe}&ngaynhan=${ngaynhan}`,true);
+        ajax.open("GET",`find.php?mabd=${soxe}`,true);
+        ajax.send();
+    }
+    function xoa(mabd,macv){
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                document.getElementById("table").innerHTML = this.responseText;
+            }else{
+                console.log("loi");
+            }
+        }
+        console.log(`delete.php?mabd=${mabd}&macv=${macv}`);
+        ajax.open("GET",`delete.php?mabd=${mabd}&macv=${macv}`,true);
         ajax.send();
     }
 </script>

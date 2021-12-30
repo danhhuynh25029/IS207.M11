@@ -4,33 +4,34 @@
     $PASSWORD = "admin12345";
     $DBNAME = "baoduong";
     $conn = mysqli_connect($SERVER,$USERNAME,$PASSWORD,$DBNAME);
-    $soxe = $_GET['soxe'];
-    $ngaynhan = $_GET['ngaynhan'];
-    // lay thong tin bao duong
-    $sql = "select * from BAODUONG where SOXE = '$soxe' and NGAYNHAN = '$ngaynhan'";
-    $result = mysqli_query($conn,$sql);
-    while($row = mysqli_fetch_row($result)){
-    // lay chi tiet bao duong
-    $s = "select * from CT_BD where MABD = '$row[0]'";
+    // $soxe = $_GET['soxe'];
+    // $ngaynhan = $_GET['ngaynhan'];
+    $mabd = $_GET['mabd'];
+    $s = "select * from CT_BD where MABD = '$mabd'";
     $r = mysqli_query($conn,$s);
-    echo "<table>";
-    echo "<tr>
-        <td>Tên công việc</td>
-        <td>Đơn giá</td>
-        <td>Chức năng</td>
-    </tr>";
+    $str = "<table>
+    <tr>
+    <td>Tên công việc</td>
+    <td>Đơn giá</td>
+    <td>Chức năng</td>
+    </tr>
+    ";
+    $tien = 0;
     while($row0 = mysqli_fetch_row($r)){
         $sql1 = "select * from CONGVIEC where MACV = '$row0[1]'";
         $result1 = mysqli_query($conn,$sql1);
        
         while($row1 = mysqli_fetch_row($result1)){
-            echo "<tr>";
-            echo "<td>$row1[1]</td>";
-            echo "<td>$row1[2]</td>";
-            echo "<td><a href='delete.php?macv=$row1[0]'><button>Xóa</button></a>";
-            echo "</tr>";
+                $str = $str."<tr>";
+                $str = $str."<td>$row1[1]</td>";
+                $str = $str."<td>$row1[2]</td>";
+                $str = $str."<td><button onclick=xoa('$mabd','$row1[0]')>Xóa</button>";
+                $str = $str."</tr>";
+                $tien = $tien + (int)$row1[2];
             }
         }
-    }
-    echo "</table>";
+    echo "Thành tiền<input type='text' name='thanhtien' value=$tien>";
+    $str = $str."</table>";
+    echo $str;
+    echo "<a href='pay.php?mabd=$mabd&thanhtien=$tien' ><input type='button' value='Thanh toán'></a>";
 ?>
