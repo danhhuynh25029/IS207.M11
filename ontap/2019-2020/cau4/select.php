@@ -14,16 +14,22 @@
 			<th>Số lần thuê</th>
 		</tr>
 	";
-	while($row = mysqli_fetch_row($result)){
-		if($i >= $soluong){
-			break;
-		}
+	$arr = array();
+	while($row=mysqli_fetch_row($result)){
 		$s = "select * from cthd where MAXE = '$row[0]'";
 		$r = mysqli_query($conn,$s);
 		$n = mysqli_num_rows($r);
+		$arr[$row[1]] = $n;
+	}
+	$arr = rsort($arr);
+	$i = 0;
+	foreach($arr as $key => $value){
+		if(i > soluong){
+			break;
+		}
 		echo "<tr>
-			<td>$row[1]</td>
-			<td>$n</td>
+			<td>$key</td>
+			<td>$value</td>
 		</tr>";
 		$i += 1;
 	}
