@@ -5,7 +5,7 @@
 	$DBNAME = "thuexe";
 	$conn = mysqli_connect($SERVER,$USERNAME,$PASSWORD,$DBNAME);
 	$soluong = (int)$_GET['soluong'];
-	$sql = "select * from xe";
+	$sql = "select xe.MAXE,xe.TENXE,count(xe.MAXE) from xe,cthd where xe.MAXE = cthd.MAXE group by xe.MAXE,xe.TENXE order by count(cthd.MAXE)";
 	$result = mysqli_query($conn,$sql);
 	$i = 0;
 	echo "<table>
@@ -14,24 +14,11 @@
 			<th>Số lần thuê</th>
 		</tr>
 	";
-	$arr = array();
-	while($row=mysqli_fetch_row($result)){
-		$s = "select * from cthd where MAXE = '$row[0]'";
-		$r = mysqli_query($conn,$s);
-		$n = mysqli_num_rows($r);
-		$arr[$row[1]] = $n;
-	}
-	$arr = rsort($arr);
-	$i = 0;
-	foreach($arr as $key => $value){
-		if(i > soluong){
-			break;
-		}
+	while($row = mysqli_fetch_row($result)){
 		echo "<tr>
-			<td>$key</td>
-			<td>$value</td>
+			<td>$row[1]</td>
+			<td>$row[2]</td>
 		</tr>";
-		$i += 1;
 	}
 	echo "</table>";
 ?>
